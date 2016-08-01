@@ -16,7 +16,6 @@ namespace TextToSRG
         public Parser()
         {
             
-            //this.Input = input;
         }
         public ExpressionNode ParseTopLevel(string input)
         {
@@ -34,22 +33,18 @@ namespace TextToSRG
         }
         void ParseToken(Token tok)
         {
-            if (tok.GetType() == typeof(WordToken))
-            {
-                ParseAtom(tok);
-            }
-            else if (tok.GetType() == typeof(ParenToken))
+            if (tok.GetType() == typeof(ParenToken))
             {
                 ParseParen((tok as ParenToken).IsClose);
+                return;
             }
+            ParseAtom(tok);
         }
         void ParseAtom(Token tok)
         {
-             //ASTNode atom;
             switch (tok.GetType().ToString())
             {
                 case "TextToSRG.WordToken":
-                    Console.WriteLine((tok as WordToken).Text);
                     var atom = new WordNode((tok as WordToken).Text);
                     ExpressionStack.Last().ChildNodes.Add(atom);
                     return;
@@ -60,7 +55,6 @@ namespace TextToSRG
         }
         void ParseParen(bool isClose)
         {
-            Console.WriteLine(isClose);
             if (!isClose)
             {
                 var expr = new ExpressionNode();

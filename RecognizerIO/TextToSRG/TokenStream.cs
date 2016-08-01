@@ -51,7 +51,7 @@ namespace TextToSRG
         private Token ReadOr()
         {
             var ch = Input.Next();
-            return new OrToken(); ;
+            return new OrToken();
         }
 
         private Token ReadNext()

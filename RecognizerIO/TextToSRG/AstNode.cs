@@ -49,7 +49,6 @@ namespace TextToSRG
                         {
                             children.Last().Append(expressionGb);
                         }
-                        Console.WriteLine("expression node");
                         break;
                     case "TextToSRG.WordNode":
                         string wordText = (child as WordNode).Text;
@@ -62,7 +61,6 @@ namespace TextToSRG
                         {
                             children.Last().Append(wordText);
                         }
-                        Console.WriteLine("word node");
                         break;
                 }
                 orFlag = false;

@@ -46,4 +46,13 @@ namespace TextToSRG
         }
     }
 
+    public class RepeatToken : Token
+    {
+
+        public RepeatToken()
+        {
+
+        }
+    }
+
 }
