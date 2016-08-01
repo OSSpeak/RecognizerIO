@@ -55,4 +55,18 @@ namespace TextToSRG
         }
     }
 
+    public class NumberRangeToken : Token
+    {
+
+        public int Start { get; set; }
+        public int Stop { get; set; }
+        public int Step { get; set; }
+
+
+        public NumberRangeToken()
+        {
+
+        }
+    }
+
 }

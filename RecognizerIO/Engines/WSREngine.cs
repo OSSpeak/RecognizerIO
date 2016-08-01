@@ -44,7 +44,8 @@ namespace RecognizerIO.Engines
                     string action = cmd.Value;
                     ExpressionNode rootAST = Api.TextToAST(pattern);
                     GrammarBuilder gb = rootAST.ToGrammarBuilder();
-                    var guid = new Guid().ToString();
+                    var guid = Guid.NewGuid().ToString();
+                    Console.WriteLine(guid);
                     var resultKey = new SemanticResultKey(guid, gb);
                     RootChoices.Add(resultKey);
 
