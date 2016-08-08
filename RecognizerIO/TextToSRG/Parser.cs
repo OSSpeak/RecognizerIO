@@ -10,7 +10,7 @@ namespace TextToSRG
     public class Parser
     {
         
-        private TokenStream TokStream;
+        private PatternTokenStream TokStream;
         private List<ExpressionNode> ExpressionStack;
 
         public Parser()
@@ -22,7 +22,7 @@ namespace TextToSRG
             var topLevelNode = new ExpressionNode();
             ExpressionStack = new List<ExpressionNode>() { topLevelNode };
             var inputStream = new InputStream(input);
-            TokStream = new TokenStream(inputStream);
+            TokStream = new PatternTokenStream(inputStream);
 
             while (!TokStream.Eof())
             {

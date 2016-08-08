@@ -15,11 +15,12 @@ namespace RecognizerIO.Engines
         public Choices RootChoices;
         public GrammarBuilder RootBuilder;
         private CommandLoader CmdLoader;
-        private Dictionary<string, SemanticResultValue> ResultMapping;
+        private Dictionary<string, string> ResultMapping;
 
         public WSREngine()
         {
             RootChoices = new Choices();
+            ResultMapping = new Dictionary<string, string>();
             Engine = new SpeechRecognitionEngine();
             Engine.SpeechRecognized += new EventHandler<SpeechRecognizedEventArgs>(recognizer_SpeechRecognized);
             Engine.SetInputToDefaultAudioDevice();
@@ -28,8 +29,9 @@ namespace RecognizerIO.Engines
         void recognizer_SpeechRecognized(object sender, SpeechRecognizedEventArgs e)
         {
             if (e.Result == null || e.Result.Confidence <= .9) return;
-            Console.WriteLine(e.Result.Text);
-            Console.WriteLine(e.Result.Words.ToArray()[0].Text);
+            var patternKey = e.Result.Semantics.ToArray()[0].Key;
+            string action = ResultMapping[patternKey];
+            Console.WriteLine(action);
         }
 
         public void BuildGrammarFromCommands(CommandLoader loader)
@@ -41,11 +43,10 @@ namespace RecognizerIO.Engines
                 foreach (var cmd in module.Commands)
                 {
                     string pattern = cmd.Key;
-                    string action = cmd.Value;
                     ExpressionNode rootAST = Api.TextToAST(pattern);
                     GrammarBuilder gb = rootAST.ToGrammarBuilder();
                     var guid = Guid.NewGuid().ToString();
-                    Console.WriteLine(guid);
+                    ResultMapping[guid] = cmd.Value;
                     var resultKey = new SemanticResultKey(guid, gb);
                     RootChoices.Add(resultKey);
 

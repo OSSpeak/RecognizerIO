@@ -12,11 +12,12 @@ namespace RecognizerIO
     {
         static void Main(string[] args)
         {
-            var loader = new CommandLoader();
-            var speechEngine = new Engines.WSREngine();
-            speechEngine.BuildGrammarFromCommands(loader);
-            speechEngine.Begin();
-            Console.ReadLine();
+            var inputHandler = new InputHandler();
+            while (true)
+            {
+                var communicatorInput = Console.ReadLine();
+                inputHandler.ProcessIncomingInput(communicatorInput);
+            }
         }
     }
 }

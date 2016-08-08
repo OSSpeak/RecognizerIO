@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TextToSRG
 {
-    class InputStream
+    public class InputStream
     {
         
         private string Input;

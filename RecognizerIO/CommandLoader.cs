@@ -18,7 +18,8 @@ namespace RecognizerIO
 
         public CommandLoader()
         {
-            RootPath = Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName) + @"..\..\..\..\..\OSSpeak\commands";
+            //RootPath = Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName) + @"..\..\..\..\..\OSSpeak\commands";
+            RootPath = @"C:\Users\evan\modules\OSSpeak\user\commands";
             StartSettingsPath = Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName) + @"\settings.json";
 
             CmdModules = new List<CommandModule>();
