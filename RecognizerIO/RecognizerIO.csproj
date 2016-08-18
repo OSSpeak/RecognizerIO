@@ -53,7 +53,7 @@
     <Compile Include="Action.cs" />
     <Compile Include="ActionTokenStream.cs" />
     <Compile Include="CommandLoader.cs" />
-    <Compile Include="Engines\WSREngine.cs" />
+    <Compile Include="Engines\EngineManager.cs" />
     <Compile Include="InputHandler.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

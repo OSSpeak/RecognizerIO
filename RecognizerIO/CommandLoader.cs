@@ -14,7 +14,7 @@ namespace RecognizerIO
 
         string RootPath;
         string StartSettingsPath;
-        public List<CommandModule> CmdModules;
+        public Dictionary<string, CommandModule> CmdModules;
 
         public CommandLoader()
         {
@@ -22,7 +22,7 @@ namespace RecognizerIO
             RootPath = @"C:\Users\evan\modules\OSSpeak\user\commands";
             StartSettingsPath = Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName) + @"\settings.json";
 
-            CmdModules = new List<CommandModule>();
+            CmdModules = new Dictionary<string, CommandModule>();
         }
 
         public void LoadModules()
@@ -35,8 +35,8 @@ namespace RecognizerIO
             using (StreamReader r = new StreamReader(path))
             {
                 string json = r.ReadToEnd();
-                CommandModule dict = JsonConvert.DeserializeObject<CommandModule>(json);
-                CmdModules.Add(dict);
+                CommandModule module = JsonConvert.DeserializeObject<CommandModule>(json);
+                CmdModules[path] = module;
             }
         }
 

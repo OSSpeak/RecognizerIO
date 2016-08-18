@@ -16,6 +16,7 @@ namespace RecognizerIO
             while (true)
             {
                 var communicatorInput = Console.ReadLine();
+                Console.WriteLine(communicatorInput);
                 inputHandler.ProcessIncomingInput(communicatorInput);
             }
         }
